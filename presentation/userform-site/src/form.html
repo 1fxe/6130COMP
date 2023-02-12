@@ -1,0 +1,51 @@
+<div class="col-6 p-5">
+    <s class="walkers">Walkers&#8482</s>
+    <h1>Runners Crisps</h1>
+    <p>Enter your 10 digit hex code for a chance to win a free football ⚽️</p>
+</div>
+<form class="col-5" method="post" action="/form.php">
+    <div class="mb-3 row">
+        <label for="usersName" class="col-form-label">Name</label>
+        <div class="col-8">
+            <input id="usersName" name="usersName" placeholder="Filip Wedzicha" type="text" required="required"
+                maxlength="100" class="form-control">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="email" class="form-label">Email</label>
+        <div class="col-8">
+            <input id="email" name="email" placeholder="filip@email.com" type="email" required="required"
+                class="form-control">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="address" class="form-label">Address</label>
+        <div class="col-8">
+            <input id="address" name="address" placeholder="70 Mount Pleasant, Merseyside L3 5UX" type="text"
+                class="form-control" required="required">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="code" class="form-label">10 Digit Hex Code</label>
+        <div class="col-8">
+            <div class="input-group">
+                <input id="code" name="code" placeholder="979E086854" type="text" pattern="^[0-9A-Fa-f]{10}$"
+                    class="form-control" required="required">
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="playerName" class="form-label">Best Player's Name</label>
+        <div class="col-8">
+            <div class="input-group">
+                <input id="playerName" name="playerName" placeholder="Lionel Messi" type="text" maxlength="100"
+                    class="form-control" required="required">
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <div class="col-8">
+            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
