@@ -14,6 +14,10 @@ HTML;
     $body = <<<HTML
 <h1>Congratulations you won a 10% off discount code! It will be emailed to you.</h1>
 HTML;
+} else {
+    $body = <<<HTML
+<h1>Something went wrong processing the form $response<h1>
+HTML;
 }
 
 // Load our template
