@@ -1,7 +1,19 @@
 <?php
 
 // Send the data from the HTML form to our backend, the load balancer is running on port 3000
-$response = file_get_contents("http://172.17.0.1:3000/backend.php?data=" . $_POST);
+$url = 'http://192.168.128.3:3000/backend.php';
+
+$options = array(
+    'http' => array(
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method'  => 'POST',
+        'content' => http_build_query($_POST)
+    )
+);
+$context  = stream_context_create($options);
+$response = curl_exec($ch) = file_get_contents($url, false, $context);
+
+var_dump($response);
 
 $body = "";
 
