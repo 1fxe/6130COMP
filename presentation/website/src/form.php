@@ -1,7 +1,13 @@
 <?php
 
 // Send the data from the HTML form to our backend, the load balancer is running on port 3000
-$response = file_get_contents("http://172.17.0.1:3000/backend.php?data=" . $_POST);
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "http://http://172.17.0.1:3000/backend.php");
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($_POST));
+$response = curl_exec($ch);
+curl_close($ch);
 
 $body = "";
 
