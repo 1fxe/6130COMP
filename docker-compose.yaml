@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  # Loadbalancer
+  loadbalancer:
+    build: ./loadbalancer/
+    ports:
+      - "80:80"
+    depends_on:
+      - front-node1
+      - front-node2
+      - front-node3
+    networks:
+      - frontend
+      - backend
   # Presentation Tier 
   front-node1:
     build: ./presentation/website/
@@ -8,29 +20,16 @@ services:
       - "81:80"
     networks:
       - frontend
-      - backend
   front-node2:
     build: ./presentation/website/
     ports:
       - "82:80"
     networks:
       - frontend
-      - backend
   front-node3:
     build: ./presentation/website/
     ports:
       - "83:80"
-    networks:
-      - frontend
-      - backend
-  front-loadbalancer:
-    build: ./presentation/loadbalancer/
-    ports:
-      - "80:80"
-    depends_on:
-      - front-node1
-      - front-node2
-      - front-node3
     networks:
       - frontend
   # Business Tier
@@ -50,16 +49,6 @@ services:
     build: ./business/backend/
     ports:
       - "3003:3000"
-    networks:
-      - backend
-  business-loadbalancer:
-    build: ./business/loadbalancer/
-    ports:
-      - "3000:3000"
-    depends_on:
-      - business-node1
-      - business-node2
-      - business-node3
     networks:
       - backend
 

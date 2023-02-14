@@ -32,6 +32,9 @@ if (isset($_POST['submit'])) {
     }
 
     echo "VOUCHER";
+    exit();
+} else {
+    echo "Invalid Form";
 }
 
 ?>
