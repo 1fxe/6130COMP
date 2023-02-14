@@ -1,18 +1,21 @@
 <?php
 
 // Send the data from the HTML form to our backend, the load balancer is running on port 3000
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "http://http://172.17.0.1:3000/backend.php");
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($_POST));
-$response = curl_exec($ch);
-curl_close($ch);
+$url = 'http://192.168.128.3:3000/backend.php';
 
+$options = array(
+    'http' => array(
+        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($_POST)
+    )
+);
+$context = stream_context_create($options);
+$response = file_get_contents($url, false, $context);
 $body = "";
 
 // The response returns "VOUCHER" is the user has won a voucher
-if ($response == "VOUCHER") {
+if ($response === "VOUCHER") {
     $body = <<<HTML
 <h1>Congratulations you won a free football voucher! It will be emailed to you.</h1>
 HTML;

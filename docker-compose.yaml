@@ -8,21 +8,18 @@ services:
       - "81:80"
     networks:
       - frontend
-      - backend
   front-node2:
     build: ./presentation/website/
     ports:
       - "82:80"
     networks:
       - frontend
-      - backend
   front-node3:
     build: ./presentation/website/
     ports:
       - "83:80"
     networks:
       - frontend
-      - backend
   front-loadbalancer:
     build: ./presentation/loadbalancer/
     ports:
@@ -33,35 +30,37 @@ services:
       - front-node3
     networks:
       - frontend
+      - backend
   # Business Tier
-  business-node1:
+  backend-node1:
     build: ./business/backend/
     ports:
-      - "3001:3000"
+      - "3001:80"
     networks:
       - backend
-  business-node2:
+  backend-node2:
     build: ./business/backend/
     ports:
-      - "3002:3000"
+      - "3002:80"
     networks:
       - backend
-  business-node3:
+  backend-node3:
     build: ./business/backend/
     ports:
-      - "3003:3000"
+      - "3003:80"
     networks:
       - backend
-  business-loadbalancer:
+  backend-loadbalancer:
     build: ./business/loadbalancer/
     ports:
       - "3000:3000"
     depends_on:
-      - business-node1
-      - business-node2
-      - business-node3
+      - backend-node1
+      - backend-node2
+      - backend-node3
     networks:
       - backend
+      - frontend
 
 networks:
   frontend:

@@ -32,6 +32,8 @@ if (isset($_POST['submit'])) {
     }
 
     echo "VOUCHER";
+} else {
+    echo "Invalid form";
 }
 
 ?>
