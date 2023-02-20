@@ -2,6 +2,11 @@
 
 Runners Crisps Footbal Competition ⚽️
 
+## Prerequisites
+
+- Install  [`docker-engine`](https://docs.docker.com/engine/install/ )
+- Install docker-compose `sudo apt install docker-compose`
+
 Running using docker-compose
 ```docker
 sudo docker-compose up
