@@ -116,8 +116,8 @@ services:
     container_name: mongo-config
     restart: "no"
     volumes:
-      - ./database/setup.sh
-      - ./database/init.js
+      - ./database/setup.sh:/database/setup.sh
+      - ./database/init.js:/database/init.js
     entrypoint: [ "bash", "/database/setup.sh" ]
 
 networks:
