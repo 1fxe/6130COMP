@@ -1,5 +1,6 @@
 #!/bin/bash
 
+apt update -y
 apt install lolcat -y
 echo "Creating MongoDB database..." | lolcat --force
 
