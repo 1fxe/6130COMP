@@ -1,8 +1,6 @@
 #!/bin/bash
 
-apt update -y
-apt install lolcat -y
-echo "Creating MongoDB database..." | lolcat --force
+echo "Creating MongoDB database..."
 
 DELAY=30
 
@@ -34,7 +32,7 @@ var config = {
 rs.initiate(config, { force: true });
 EOF
 
-echo "****** Waiting for ${DELAY} seconds for replicaset configuration to be applied ******" | lolcat --force
+echo "****** Waiting for ${DELAY} seconds for replicaset configuration to be applied ******"
 
 sleep $DELAY
 
