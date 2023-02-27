@@ -1,5 +1,22 @@
 <?php
 
+// Setup database
+require 'vendor/autoload.php'
+
+
+try{
+    $client = new MongoDB\Client(
+        'mongodb://mongo1:27017,mongo2:27017,mongo3:27017/admin?replicaSet=rs0'
+    );
+} catch (MongoConnectionException $e) {
+    die('Error connecting to MongoDB server');
+} catch (MongoException $e) {
+    die('Error: ' . $e->getMessage());
+}
+    
+$users = $client->$users;
+$codes = $client->$codes;
+
 // Matches 10 digit hex code
 $CODE_REGEX = "/^[a-f0-9]{10}$/";
 
@@ -18,8 +35,12 @@ if (isset($_POST['submit'])) {
     $code = strtolower(sanatize($_POST['code']));
     $playerName = sanatize($_POST['playerName']);
 
+    $usersName = sanatize($_POST['usersName']);
+    $email = sanatize($_POST['email']);
+    $address = sanatize($_POST['address']);
+
     // Check if the code is valid
-    if (!preg_match($CODE_REGEX, $code, )) {
+    if (!preg_match($CODE_REGEX, $code)) {
         echo "Invalid code";
         exit();
     }
@@ -31,7 +52,29 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    echo "VOUCHER";
+    $result = $codes->findOne(['code' => $code])
+
+    // We check the code has not been used
+    if ($result->$used === FALSE) {
+        if ($result->$football === TRUE) {
+            // They won a football we should email them the code
+            echo "VOUCHER";
+        } else {
+            // They won a 10$ discount
+            echo "DISCOUNT";
+        }
+
+        // Now we can store their data for analytics, though im pretty sure this violates GDPR since we haven't got a privacy policy
+        $users->>insertOne([
+            'name' => $usersName,
+            'email' => $email,
+            'address' => $address,
+            'playerName' => $playerName
+        ]);
+
+    } else {
+        echo "Code has already been used";
+    }
 } else {
     echo "Invalid form";
 }
