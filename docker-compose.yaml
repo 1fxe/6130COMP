@@ -71,7 +71,7 @@ services:
       - database
 
   # Data Tier
-  mongo-node1:
+  mongo1:
     image: mongo:6.0.4
     container_name: mongo1
     restart: always
@@ -86,7 +86,7 @@ services:
         "--replSet",
         "rs0"
       ]
-  mongo-node2:
+  mongo2:
     image: mongo:6.0.4
     container_name: mongo2
     restart: always
@@ -101,7 +101,7 @@ services:
         "--replSet",
         "rs0"
       ]
-  mongo-node3:
+  mongo3:
     image: mongo:6.0.4
     container_name: mongo3
     restart: always

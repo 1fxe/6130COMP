@@ -1,10 +1,8 @@
 <?php
+require 'vendor/autoload.php';
 
 // Setup database
-require 'vendor/autoload.php'
-
-
-try{
+try { 
     $client = new MongoDB\Client(
         'mongodb://mongo1:27017,mongo2:27017,mongo3:27017/admin?replicaSet=rs0'
     );
@@ -52,7 +50,7 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    $result = $codes->findOne(['code' => $code])
+    $result = $codes->findOne(['code' => $code]);
 
     // We check the code has not been used
     if ($result->$used === FALSE) {
@@ -65,7 +63,7 @@ if (isset($_POST['submit'])) {
         }
 
         // Now we can store their data for analytics, though im pretty sure this violates GDPR since we haven't got a privacy policy
-        $users->>insertOne([
+        $users->insertOne([
             'name' => $usersName,
             'email' => $email,
             'address' => $address,
