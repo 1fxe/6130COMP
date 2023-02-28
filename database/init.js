@@ -1,7 +1,7 @@
 use runners_crisps;
 
 db.codes.drop();
-db.users.drop()
+db.users.drop();
 
 // Function to generate random 10 digit hex code
 function generate10DigitHexCode() {
@@ -36,6 +36,13 @@ for (let index = 0; index < 1_000; index++) {
     codes.push({ '_id': index, 'code': code, 'used': false, 'football': footballVoucher });
 }
 
+// For testing
+codes.push({ '_id': 99999, 'code': '1234567890', 'used': false, 'football': true });
+codes.push({ '_id': 99998, 'code': '1234567891', 'used': false, 'football': false });
+codes.push({ '_id': 99997, 'code': '1234567892', 'used': true, 'football': false });
+
+
 // Generate the vouchers
 db.codes.insertMany(codes);
+db.users.insertOne({})
 

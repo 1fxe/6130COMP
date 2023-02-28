@@ -12,8 +12,8 @@ try {
     die('Error: ' . $e->getMessage());
 }
     
-$users = $client->$users;
-$codes = $client->$codes;
+$users = $client->runners_crisps->users;
+$codes = $client->runners_crisps->codes;
 
 // Matches 10 digit hex code
 $CODE_REGEX = "/^[a-f0-9]{10}$/";
