@@ -2,12 +2,12 @@
 
 echo "Creating MongoDB database..."
 
-DELAY=30
+DELAY=5
 
 sleep $DELAY
 
 # Create a mongodb replica set
-mongo --host mongo1:27017 <<EOF
+mongosh --host mongo1:27017 <<EOF
 var config = {
     "_id": "rs0",
     "version": 1,
@@ -36,4 +36,4 @@ echo "****** Waiting for ${DELAY} seconds for replicaset configuration to be app
 
 sleep $DELAY
 
-mongo --host mongo1:27017 < /scripts/init.js
+mongosh --host mongo1:27017 < /database/init.js

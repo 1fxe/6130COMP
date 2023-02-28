@@ -16,10 +16,10 @@ function generate10DigitHexCode() {
 
 const codes = [];
 const ensureRandomCodes = new Set();
-let footballs = 10000;
+let footballs = 10;
 
-// Generates 1 million unique codes
-for (let index = 0; index < 1_000_000; index++) {
+// Generates 1 million unique codes ( 1000 for testing)
+for (let index = 0; index < 1_000; index++) {
     let code = generate10DigitHexCode();
     while (!ensureRandomCodes.has(code)) {
         code = generate10DigitHexCode();
