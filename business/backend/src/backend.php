@@ -53,8 +53,8 @@ if (isset($_POST['submit'])) {
     $result = $codes->findOne(['code' => $code]);
 
     // We check the code has not been used
-    if ($result->$used === FALSE) {
-        if ($result->$football === TRUE) {
+    if ($result->used === FALSE) {
+        if ($result->football === TRUE) {
             // They won a football we should email them the code
             echo "VOUCHER";
         } else {
