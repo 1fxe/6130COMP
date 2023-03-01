@@ -131,6 +131,10 @@ services:
     container_name: mongo-config
     networks:
       - database
+    depends_on:
+      - mongo1
+      - mongo2
+      - mongo3
     restart: "no"
     volumes:
       - ./database/setup.sh:/database/setup.sh

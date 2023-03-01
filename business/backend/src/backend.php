@@ -50,6 +50,7 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
+    // Result can be NULL but we can just fallback to else
     $result = $codes->findOne(['code' => $code]);
 
     // We check the code has not been used

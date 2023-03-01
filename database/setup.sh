@@ -2,9 +2,7 @@
 
 echo "Creating MongoDB database..."
 
-DELAY=5
-
-sleep $DELAY
+sleep 10
 
 # Create a mongodb replica set
 mongosh --host mongo1:27017 <<EOF
@@ -13,27 +11,25 @@ var config = {
     "version": 1,
     "members": [
         {
-            "_id": 1,
+            "_id": 0,
             "host": "mongo1:27017",
             "priority": 2
         },
         {
-            "_id": 2,
+            "_id": 1,
             "host": "mongo2:27017",
-            "priority": 1
+            "priority": 0
         },
         {
-            "_id": 3,
+            "_id": 2,
             "host": "mongo3:27017",
-            "priority": 1
+            "priority": 0
         }
     ]
 };
 rs.initiate(config, { force: true });
 EOF
 
-echo "****** Waiting for ${DELAY} seconds for replicaset configuration to be applied ******"
-
-sleep $DELAY
+sleep 5
 
 mongosh --host mongo1:27017 < /database/init.js
