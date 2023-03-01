@@ -1,4 +1,4 @@
-docker-compose up -D
+docker-compose up -d
 
 RESULT=$(curl --request POST \
   --url 'http://192.168.128.3:3000/backend.php' \
@@ -7,7 +7,7 @@ RESULT=$(curl --request POST \
   --data email=test@email.com \
   --data 'address=Some Address' \
   --data code=1234567890 \
-  --data 'playerName=Lionel Messi'
+  --data 'playerName=Lionel Messi' \
   --data 'submit')
 
  echo "Result is $RESULT and we expect VOUCHER"  
