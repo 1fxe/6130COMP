@@ -44,5 +44,6 @@ codes.push({ '_id': 99997, 'code': '1234567892', 'used': true, 'football': false
 
 // Generate the vouchers
 db.codes.insertMany(codes);
+db.codes.findOne({ 'code': '1234567890' })
 db.users.insertOne({})
 
