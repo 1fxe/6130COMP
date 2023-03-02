@@ -19,22 +19,22 @@ const ensureRandomCodes = new Set();
 let footballs = 10;
 
 // Generates 1 million unique codes ( 1000 for testing)
-for (let index = 0; index < 1_000; index++) {
-    let code = generate10DigitHexCode();
-    while (!ensureRandomCodes.has(code)) {
-        code = generate10DigitHexCode();
-    }
+// for (let index = 0; index < 1_000; index++) {
+//     let code = generate10DigitHexCode();
+//     while (!ensureRandomCodes.has(code)) {
+//         code = generate10DigitHexCode();
+//     }
 
-    let footballVoucher = false;
+//     let footballVoucher = false;
 
-    if (footballs > 0) {
-        footballVoucher = true;
-        footballs--;
-    }
+//     if (footballs > 0) {
+//         footballVoucher = true;
+//         footballs--;
+//     }
 
-    ensureRandomCodes.add(code);
-    codes.push({ '_id': index, 'code': code, 'used': false, 'football': footballVoucher });
-}
+//     ensureRandomCodes.add(code);
+//     codes.push({ '_id': index, 'code': code, 'used': false, 'football': footballVoucher });
+// }
 
 // For testing
 codes.push({ '_id': 99999, 'code': '1234567890', 'used': false, 'football': true });
