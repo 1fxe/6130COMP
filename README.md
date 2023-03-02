@@ -1,6 +1,6 @@
 # 6130COMP Cloud Assignment
 
-Runners Crisps Footbal Competition ⚽️
+Runners Crisps Football Competition ⚽️
 
 ## Prerequisites
 

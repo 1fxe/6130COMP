@@ -1,4 +1,4 @@
-docker-compose up -d
+# docker-compose up -d
 
 RESULT=$(curl --request POST \
   --url 'http://192.168.128.3:3000/backend.php' \
